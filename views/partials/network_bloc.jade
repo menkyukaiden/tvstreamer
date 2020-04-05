@@ -1,0 +1,89 @@
+nav
+    #nav-tab.nav.nav-tabs(role="tablist")
+        a.nav-item.nav-link.active(data-toggle="tab", href="#nav-home", role="tab", aria-controls="nav-home", aria-selected="true", id="nav-home-tab")
+            | LAN1 Settings
+        a.nav-item.nav-link(data-toggle="tab", href="#nav-profile", role="tab", aria-controls="nav-profile", aria-selected="false", id="nav-profile-tab")
+            | LAN2 Settings
+
+#nav-tabContent.tab-content.col-md-6
+    #nav-home.tab-pane.fade.show.active(role="tabpanel",aria-labelledby="nav-home-tab")
+        form(action="")
+            fieldset.form-group
+                .row
+                    legend.col-form-label.col-sm-2.pt-0
+                        | DHCP Settings
+                    .col-sm-10
+                        .form-check.form-check-inline
+                            input.form-check-input(id="gridRadios1", name="gridRadios", type="radio", role="tabpanel", aria-labelledby="nav-home-tab", checked)
+                            label.form-check-label(for="gridRadios1")
+                                | DHCP
+                        .form-check.form-check-inline
+                            input.form-check-input(id="gridRadios2", name="gridRadios", type="radio", role="tabpanel", aria-labelledby="nav-home-tab")
+                            label.form-check-label(for="gridRadios2")
+                                | STATIC
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | IP Address
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress1", placeholder="192.168.1.25")
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | Subnet Mask
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress2", placeholder="192.168.1.25")
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | Gateway
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress3", placeholder="192.168.1.1")
+             .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | DNS Server
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress4", placeholder="192.168.1.1")     
+
+             .form-group.row
+                .col-sm-10
+                    button.btn.btn-primary(type="submit")
+                        | Save                            
+
+    #nav-home.tab-pane.fade(role="tabpanel",aria-labelledby="nav-profile-tab")
+        form(action="")
+            fieldset.form-group
+                .row
+                    legend.col-form-label.col-sm-2.pt-0
+                        | DHCP Settings
+                    .col-sm-10
+                        .form-check.form-check-inline
+                            input.form-check-input(id="gridRadios1", name="gridRadios", type="radio", role="tabpanel", aria-labelledby="nav-profile-tab", checked)
+                            label.form-check-label(for="gridRadios1")
+                                | DHCP
+                        .form-check.form-check-inline
+                            input.form-check-input(id="gridRadios2", name="gridRadios", type="radio", role="tabpanel", aria-labelledby="nav-profile-tab")
+                            label.form-check-label(for="gridRadios2")
+                                | STATIC
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | IP Address
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress1", placeholder="192.168.1.25")
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | Subnet Mask
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress2", placeholder="192.168.1.25")
+            .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | Gateway
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress3", placeholder="192.168.1.1")
+             .form-group.row
+                label.col-sm-2.col-form-label(for="inputAddress")
+                    | DNS Server
+                .col-sm-10
+                    input.form-control(type="text", id="inputAddress4", placeholder="192.168.1.1")     
+
+             .form-group.row
+                .col-sm-10
+                    button.btn.btn-primary(type="submit")
+                        | Save                                

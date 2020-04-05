@@ -1,0 +1,29 @@
+h2
+    | Default running when power on
+p
+    | Auto start when power on: 
+ul
+    li
+        | If you use None, Tvheadend, VDR and Dvblast will not run 
+    li    
+        | If you use VDR, please select the TV Adapter (tuner) and scan first, after the scan is done, check VDR to start it.
+    li
+        | If you use Dvblast, please select the TV Adapter (tuner) and scan first, after the scan is done, check streaming to start it.
+
+form(action="")
+    fieldset
+        .form-check
+            input.form-check-input(type="radio", name="tuningradio", id="exampleRadios1", value="option1")
+            label.form-check-label(for="exampleRadios1")
+                | None
+        .form-check
+            input.form-check-input(type="radio", name="tuningradio", id="exampleRadios3", value="option3", disabled)
+            label.form-check-label(for="exampleRadios3")
+                | VDR
+        .form-check
+            input.form-check-input(type="radio", name="tuningradio", id="exampleRadios4", value="option4")
+            label.form-check-label(for="exampleRadios4")
+                | DVBlast
+        .tuning-button
+            button.btn.btn-primary(type="submit")
+                | Save      

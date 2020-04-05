@@ -1,0 +1,23 @@
+nav.col-md-2.d-none.d-md-block.bg-light.sidebar
+    .sidebar-sticky
+        ul.nav.flex-column
+
+            li.nav-item
+                a.nav-link(href="/") 
+                    span(data-feather="home")
+                    | Home
+                    span(class="sr-only")
+                        | (current)
+
+            - each i,j in config_menu
+                if i == page
+                    li.nav-item
+                        a.nav-link.active(href="#{i}")
+                            span(data-feather="settings")
+                            | #{j}
+                else
+                    li.nav-item
+                        a.nav-link(href="#{i}")
+                            span(data-feather="settings")
+                            | #{j}                            
+

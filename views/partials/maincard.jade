@@ -1,0 +1,15 @@
+.card
+    .card-body
+      case page
+         when "network_settings"
+            include network_bloc.jade
+         when "tuning_settings"
+            include tuning_bloc.jade
+         when "dvblast_settings"
+            include tuning_bloc.jade
+         when "options"
+            include options_bloc.jade        
+         when "update"
+            include update_bloc.jade   
+         when "about"
+            include about_bloc.jade   

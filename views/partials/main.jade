@@ -1,0 +1,19 @@
+main.col-md-9.ml-sm-auto.col-lg-10.px-4(role="main")
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+
+        h1.h2 
+            | #{title}
+
+        .btn-toolbar.mb-2.mb-md-0
+            .btn-group.mr-2
+
+                button.btn.btn-sm.btn-outline-secondary(type="button")
+                 | Share
+                button.btn.btn-sm.btn-outline-secondary(type="button")
+                 | Export
+
+            button.btn.btn-sm.btn-outline-secondary.dropdown-toggle(type="button")
+                 span(data-feather="calendar")
+                 | This week
+
+    include maincard.jade

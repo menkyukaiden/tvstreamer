@@ -1,0 +1,13 @@
+{
+    "interface": {
+        "title": "index",
+        "menu": {
+            "Network Settings":"network_settings", 
+            "Tuning Settings":"tuning_settings", 
+            "DVBlast Settings":"dvblast_settings", 
+            "Options":"options", 
+            "Update":"update", 
+            "About":"about"
+        }
+    }
+}
