@@ -1,6 +1,8 @@
-# Project Title
+# TV Stream
 
-TV Streamer
+TV Stream is a web interface to use DVBlast, it can receive live TV signal using built-in TV tuners and stream the channels further through Ethernet to various client devices, such as PC, tablet PC, smartphone, and smartTV.
+
+
 
 ## Getting Started
 
