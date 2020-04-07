@@ -8,16 +8,16 @@ nav.col-md-2.d-none.d-md-block.bg-light.sidebar
                     | Home
                     span(class="sr-only")
                         | (current)
-
-            - each i,j in config_menu
-                if i == page
-                    li.nav-item
-                        a.nav-link.active(href="#{i}")
-                            span(data-feather="settings")
-                            | #{j}
-                else
-                    li.nav-item
-                        a.nav-link(href="#{i}")
-                            span(data-feather="settings")
-                            | #{j}                            
+            if config_menu
+                - each i,j in config_menu
+                    if i == page
+                        li.nav-item
+                            a.nav-link.active(href="#{i}")
+                                span(data-feather="settings")
+                                | #{j}
+                    else
+                        li.nav-item
+                            a.nav-link(href="#{i}")
+                                span(data-feather="settings")
+                                | #{j}                            
 
