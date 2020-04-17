@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const config = require('../config/config.json')
+const config = require('../../config/config.json')
 
+/* GET home page. */
 const index_params = {
-    page: "tuning_settings",
-    title: "Tuning Settings",
+    page: "network_settings",
+    title: "Network Settings",
     config_menu: config.interface.menu
 }
+
 
 router.get('/', function(req, res, next) {
   res.render('index', index_params);

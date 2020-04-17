@@ -4,15 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// routes
-var indexRouter = require('./routes/index');
-var networkSettingsRouter = require('./routes/network_settings');
-var tuningSettingsRouter = require('./routes/tuning_settings');
-var dvblastSettingsRouter = require('./routes/dvblast_settings');
-var optionsRouter = require('./routes/options');
-var updateRouter = require('./routes/update');
-var aboutRouter = require('./routes/about');
+// Webapp routes
+var indexRouter = require('./routes/webapp/index');
+var networkSettingsRouter = require('./routes/webapp/network_settings');
+var tuningSettingsRouter = require('./routes/webapp/tuning_settings');
+var dvblastSettingsRouter = require('./routes/webapp/dvblast_settings');
+var optionsRouter = require('./routes/webapp/options');
+var updateRouter = require('./routes/webapp/update');
+var aboutRouter = require('./routes/webapp/about');
 
+// API routes
+var scanRouter = require('./routes/api/v1/dvbv5scan/scan');
 
 var app = express();
 
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Web app routes
 app.use('/', indexRouter);
 app.use('/network_settings', networkSettingsRouter);
 app.use('/tuning_settings', tuningSettingsRouter);
@@ -33,6 +36,9 @@ app.use('/dvblast_settings', dvblastSettingsRouter);
 app.use('/options', optionsRouter);
 app.use('/update', updateRouter);
 app.use('/about', aboutRouter);
+
+// DVB api routes
+app.use('/api/v1/dvbv5scan', scanRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

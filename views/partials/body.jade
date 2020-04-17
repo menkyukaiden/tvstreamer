@@ -1,4 +1,10 @@
-body
+body#main_body
+    script(src="/socket.io/socket.io.js")
+    script(src="javascripts/scan.js")
+    
+    .preloader-wrapper
+        .preloader
+            img(src="images/25.svg", alt="Loading...")
     include navbar.jade
     .container-fluid
         .row

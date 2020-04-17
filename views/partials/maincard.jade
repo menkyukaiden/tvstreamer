@@ -1,6 +1,8 @@
 .card
     .card-body
       case page
+         when "home"
+            include home.jade
          when "network_settings"
             include network_bloc.jade
          when "tuning_settings"
