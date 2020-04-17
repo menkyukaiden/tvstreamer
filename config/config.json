@@ -8,15 +8,15 @@
             "Channels configuration":"options", 
             "Update":"update", 
             "About":"about"
-        },
-        "interface_status": {
-            "interface_1": 0,
-            "interface_2": 0,
-            "interface_3": 0
         }
     },
     "dvb": {
-        "sat_config_file_folder": "/home/ubuntu/tvstreamer/config/dvb/dtv-scan-tables/dvb-s"
+        "sat_config_file_folder": "/home/ubuntu/tvstreamer/config/dvb/dtv-scan-tables/dvb-s",
+        "tuner_list": [
+            1,
+            2,
+            3
+        ]
     },
     "dvbblast_settings_page": {
         "last_config_sat": {

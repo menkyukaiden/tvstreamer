@@ -1,12 +1,12 @@
-module.exports = function (parameters, callback) {
+module.exports = function (p1, p2) {
     
   const cmd = '/home/ubuntu/tvstreamer/dvb/modules/scanner.sh'
 
   const { spawn } = require('child_process');
-  const scan = spawn(cmd, [parameters, '-l'], {
+  const scan = spawn(cmd, [`-a${p1}`,'-lUNIVERSAL', `/home/ubuntu/tvstreamer/config/dvb/dtv-scan-tables/dvb-s/${p2}`], {
     detached: true,
   });
-
+  /*
   scan.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
@@ -18,15 +18,16 @@ module.exports = function (parameters, callback) {
   scan.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
   });
+  */
   scan.on('error', (err) => {
     if (err) {
-      callback(undefined, "-1")
+      return -1;
     }
   });
   if (scan.pid) {
-    callback(scan.pid)
+    return scan
   } else {
-    callback("-1")
+    return -1;
   }
 }
 
