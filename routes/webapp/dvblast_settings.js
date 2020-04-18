@@ -42,6 +42,10 @@ io.on('connection', (socket) => {
         index_params.scan_status = 1;
         io.emit("startscan", data.toString().trim());
       });
+      index_params.process.stderr.on('data', function(data) {
+        index_params.scan_status = 1;
+        io.emit("startscan", data.toString().trim());
+      });
 
       index_params.process.on('close', (code) => {
         /*
