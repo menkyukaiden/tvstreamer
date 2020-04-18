@@ -30,7 +30,7 @@ window.addEventListener("load", () => {
 
 
     socket.on('startscan', (data) => {
-        console.log("received: ", data);
+        //console.log("received: ", data);
         //$slog.insertAdjacentHTML('beforeend', `${data}&#13;`);
         addToTextarea($('#scan-log'), data);
 

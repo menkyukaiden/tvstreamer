@@ -116,3 +116,7 @@ form {
 .dvblast-settings {
   margin-top: 20px;
 }
+
+#scan-log { 
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
+}

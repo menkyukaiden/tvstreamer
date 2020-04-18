@@ -1,8 +1,9 @@
 #!/bin/bash 
+i=0
 while [ true ]
 do
- echo hello 
+ date 
  sleep 1
- echo olleh >&2
- sleep 1
+ echo date >&2
+
 done

@@ -11,6 +11,7 @@
         }
     },
     "dvb": {
+        "scan-command": "/home/ubuntu/tvstreamer/dvb/modules/scanner.sh",
         "sat_config_file_folder": "/home/ubuntu/tvstreamer/config/dvb/dtv-scan-tables/dvb-s",
         "tuner_list": [
             1,

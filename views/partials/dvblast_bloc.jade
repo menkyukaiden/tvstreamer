@@ -1,12 +1,6 @@
 .row
     .col-md-6
         form(id="scanform")
-            .alert.alert-warning.alert-dismissible.fade.show(id="scan-alert", role="alert", hidden)
-                strong
-                    | Scan started !
-                button.close(type="button", class="close", data-dismiss="alert", aria-label="Close")
-                    span(aria-hidden="true")
-                        |&times;
                 
             .form-group
                 .row
@@ -51,7 +45,13 @@
                                 option(value="#{i}")
                                     | #{i}   
                 button.btn.btn-primary.btn-sm.scan-button(id="tunerStatusButton")
-                    |  Start Scan   
+                    |  Start Scan
+        .alert.alert-warning.alert-dismissible.fade.show(id="scan-alert", role="alert", hidden)
+            strong
+                | Scan started !
+                button.close(type="button", class="close", data-dismiss="alert", aria-label="Close")
+                    span(aria-hidden="true")
+                        |&times;   
     .col-md-6
         .form-group
             label(for="")
