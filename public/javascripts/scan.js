@@ -1,29 +1,56 @@
 
 const socket = io();
-socket.on('startscan', (data) => {
-    console.log("received: ", data);
-});
 
 function showAndDismissAlert(type, message) {
     $("#scan-alert").first().hide().fadeIn(200).delay(2000)
     .fadeOut(1000,  () =>{ 
         document.querySelector('#scan-alert').setAttribute('hidden', 'hidden')
-        //$(this).remove(); 
     });
-}
+};
+
+function addToTextarea($ta, text) {
+    var val = $ta.val();
+    if (val) {
+      $ta.val(val + '\n' + text);
+    } else {
+      $ta.val(text);
+    }
+    $ta.scrollTop($ta[0].scrollHeight);
+  }
 
 window.addEventListener("load", () => {
-
     var sf = document.querySelector('#scanform');
     var tl = document.querySelector('#TunnerListSelect');
     var sl = document.querySelector('#SatListSelect');
     var sa = document.querySelector('#scan-alert');
-
     var b = document.querySelector('#tunerStatusButton');
     var s = document.querySelector('#SpinnerScaning');
+    var $slog = document.querySelector('#scan-log');
+
+
+
+    socket.on('startscan', (data) => {
+        console.log("received: ", data);
+        //$slog.insertAdjacentHTML('beforeend', `${data}&#13;`);
+        addToTextarea($('#scan-log'), data);
+
+        if (data == 'stopped') {
+            console.log('xxx');
+            tl.removeAttribute('disabled');
+            sl.removeAttribute('disabled');
+            showAndDismissAlert('danger', 'Error');
+            b.removeAttribute('disabled');
+            b.textContent = 'Start Scan';
+            if(s) {
+                s.setAttribute('hidden', 'hidden')
+            };
+        };
+
+
+        
+    });
 
     socket.on('disconnect', () => {
-        
         tl.removeAttribute('disabled');
         sl.removeAttribute('disabled');
         showAndDismissAlert('danger', 'Error');
@@ -49,10 +76,7 @@ window.addEventListener("load", () => {
         var h = {
             tuner: tuner,
             sat: sat
-        }
+        };
         socket.emit('startscan', h);
-
     });
-
-
 });

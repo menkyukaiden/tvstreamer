@@ -27,25 +27,28 @@ const index_params = {
 
 const io = socket.io;
 io.on('connection', (socket) => {
-  socket.emit('startscan', 'Welcom !');
+  
+  
+
   socket.on('startscan', (data) => {
     if ( data ) {
       
       p = scan(data.tuner, data.sat);
-      //scan.unref();
+      socket.emit('startscan', `Start scanning ${data.sat} on Tuner ${data.tuner}`);
       
       p.stdout.on('data', function(data) {
-        //console.log(data.toString());
         index_params.scan_status = 1;
-        io.emit("startscan", data.toString());
+        io.emit("startscan", data.toString().trim());
       });
-      p.on('close', () => {
-        console.log('scan stop');
-        socket.emit('startscan', 'stopped')
-        
-      })
-      
 
+      p.on('close', (code) => {
+        if (code !== 0) {
+          
+          console.log(`scan process exited with code ${code}`);
+        };
+        index_params.scan_status = 1;
+        socket.emit('startscan', 'stopped')        
+      });
     }
     console.log("received: ", data);
       io.emit("startscan", "started");
