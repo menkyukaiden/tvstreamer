@@ -120,3 +120,8 @@ form {
 #scan-log { 
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
 }
+
+section {
+  width: 100%;
+  height: 100%;
+}

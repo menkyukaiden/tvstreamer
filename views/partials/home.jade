@@ -1,4 +1,11 @@
 .my-3.p-3.bg-white.rounded.shadow-sm
+    h3
+        | Dashboard
+    include cpu_chart.jade
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/chart_cpu.js")
+    
+.my-3.p-3.bg-white.rounded.shadow-sm
     h6.border-bottom.border-gray.pb-2.mb-0
         | Recent updates
     .media.text-muted.pt-3
@@ -35,4 +42,6 @@
                 
     small.d-block.text-right.mt-3
         a(href="#") All updates
+
+
  

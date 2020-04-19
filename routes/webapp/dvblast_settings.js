@@ -29,14 +29,15 @@ const index_params = {
 const io = socket.io;
 io.on('connection', (socket) => {
   if (index_params.scan_status == 0 ) {
-    io.emit('startscan', 'stopped');
+   // io.emit('startscan', 'stopped');
   }
   
   socket.on('startscan', (data) => {
     if ( data ) {
-      
+      io.emit('startscan', 'started');
+
       index_params.process = scan(data.tuner, data.sat);
-      socket.emit('startscan', `Start scanning ${data.sat} on Tuner ${data.tuner}`);
+      io.emit('startscan', `Start scanning ${data.sat} on Tuner ${data.tuner}`);
       
       index_params.process.stdout.on('data', function(data) {
         index_params.scan_status = 1;

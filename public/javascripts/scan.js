@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
         //console.log("received: ", data);
         //$slog.insertAdjacentHTML('beforeend', `${data}&#13;`);
         addToTextarea($('#scan-log'), data);
-
+        console.log(data);
         if (data == 'stopped') {
             console.log('xxx');
             tl.removeAttribute('disabled');
@@ -44,6 +44,15 @@ window.addEventListener("load", () => {
             if(s) {
                 s.setAttribute('hidden', 'hidden')
             };
+        };
+        if (data == 'started') {
+            console.log('yyy');
+            tl.setAttribute('disabled', 'disabled');
+            sl.setAttribute('disabled', 'disabled');
+            sa.removeAttribute('hidden');
+            b.textContent = 'Scanning... ';
+            b.innerHTML += '<span role="status" aria-hidden="true" id="SpinnerScaning" class="spinner-border spinner-border-sm scan-spinner"></span>';
+            b.setAttribute('disabled', 'disabled');
         };
 
 
