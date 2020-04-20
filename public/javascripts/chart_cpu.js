@@ -1,29 +1,26 @@
 window.addEventListener("load", () => {
     const socket = io();
-    var context = {}
+    var context = {};
 
     socket.on('home', (data) => {
-        console.log(data.memory);
         context = data;
-
-        //updateConfigByMutating(chart2, data.memory, data.memorynow, 'Memory Usage %', 'rgb(22, 200, 22)');
-        //updateConfigByMutating(chart, data.cpu, data.cpunow, 'CPU Usage %', 'rgb(75, 192, 192)');
-
     });
-
+       
         
     setInterval(()=> {
-        updateConfigByMutating(chart2, context.memory, context.memorynow, 'Memory Usage %', 'rgb(22, 200, 22)', 'rgba(22, 200, 22, 0.1)');
-        updateConfigByMutating(chart, context.cpu, context.cpunow, 'CPU Usage %', 'rgb(75, 192, 192)', 'rgba(75, 192, 192, 0.1)');
-    }, 100)
+
+        updateConfigByMutating(chart2, context.memory, context.memorynow, 'Memory Usage %', 'rgb(22, 200, 22)', 'rgba(22, 200, 22, 0.1)', 'Memory');
+        updateConfigByMutating(chart, context.cpu, context.cpunow, 'CPU Usage %', 'rgb(75, 192, 192)', 'rgba(75, 192, 192, 0.1)', context.cpubrand);
+        //console.log(context.cpubrand);
+    }, 1000)
     
 
-    var ctx = document.getElementById('mychart').getContext('2d');
+    var ctx1 = document.getElementById('mychart').getContext('2d');
     var ctx2 = document.getElementById('mychart2').getContext('2d');
     var ctx3 = document.getElementById('mychart3').getContext('2d');
     var ctx4 = document.getElementById('mychart4').getContext('2d');
 
-    let chart = new Chart(ctx, {
+    let chart = new Chart(ctx1, {
         type: 'line',
         data: {
             datasets: [{
@@ -34,7 +31,7 @@ window.addEventListener("load", () => {
                 lineTension: 0.1,
                 borderWidth: 1
             }],
-            labels: ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0'],
+            labels: ['30s', '', '', '', '', '', '', '', '', '', '', '', '', '', '15s', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0s'],
         },
         options: {
             animation: {
@@ -44,7 +41,7 @@ window.addEventListener("load", () => {
             responsive: true,
             title: {
                 display: true,
-                text: "CPU",
+                text: 'CPU',
             },
             scales: {
                 yAxes: [{
@@ -59,7 +56,7 @@ window.addEventListener("load", () => {
                 padding: {
                     left: 5,
                     right: 5,
-                    top: 0,
+                    top: 20,
                     bottom: 0
                 }
             }
@@ -77,7 +74,7 @@ window.addEventListener("load", () => {
                 lineTension: 0.1,
                 borderWidth: 1
             }],
-            labels: ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0']
+            labels: ['30s', '', '', '', '', '', '', '', '', '', '', '', '', '', '15s', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0s']
         },
         options: {
             animation: {
@@ -102,7 +99,7 @@ window.addEventListener("load", () => {
                 padding: {
                     left: 5,
                     right: 5,
-                    top: 0,
+                    top: 20,
                     bottom: 0
                 }
             }
@@ -121,7 +118,7 @@ window.addEventListener("load", () => {
                 lineTension: 0.1,
                 borderWidth: 1
             }],
-            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            labels: ['15s', '', '', '', '', '', '', '7s', '', '', '', '', '', '', '0']
         },
         options: {
             scales: {
@@ -137,7 +134,7 @@ window.addEventListener("load", () => {
                 padding: {
                     left: 5,
                     right: 5,
-                    top: 0,
+                    top: 20,
                     bottom: 0
                 }
             }
@@ -155,7 +152,7 @@ window.addEventListener("load", () => {
                 lineTension: 0.1,
                 borderWidth: 1
             }],
-            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            labels: ['15s', '', '', '', '', '', '', '', '', '', '', '', '', '', '0']
         },
         options: {
             scales: {
@@ -171,23 +168,23 @@ window.addEventListener("load", () => {
                 padding: {
                     left: 5,
                     right: 5,
-                    top: 0,
+                    top: 20,
                     bottom: 0
                 }
             }
         }
     });
-    function updateConfigByMutating(chart, data, now, label, color, bgcolor) {
+    function updateConfigByMutating(chart, data, now, label, color, bgcolor, title) {
 
         chart.data.datasets = [{
             label: `${label} ${now}`,
             data: data,
-            fill: true,
             borderColor: color,
             backgroundColor: bgcolor,
             lineTension: 0.1,
             borderWidth: 1
         }],
+        chart.options.title.text = title,
 
         chart.update();
     }

@@ -19,25 +19,26 @@ var perf_status = {}
  */
 
 setInterval(() => {
-  p = sysperfmon((data) => {
-    mem.push(data.memory);
-    mem.shift();
+    sysperfmon((data) => {
 
-    cpu.push(data.currentload);
-    cpu.shift();
+      mem.push(data.memory);
+      mem.shift();
+      cpu.push(data.currentload);
+      cpu.shift();
 
+      perf_status.memory = mem;
+      perf_status.memorynow = data.memory;
 
-    perf_status.memory = mem;
-    perf_status.memorynow = data.memory;
+      perf_status.cpu = cpu;
+      perf_status.cpunow = data.currentload;
 
-    perf_status.cpu = cpu;
-    perf_status.cpunow = data.currentload;
-
-    
-
+      perf_status.cpubrand = data.cpubrand;
+      //console.log(perf_status.cpubrand);
   })
 
 }, 1000)
+
+
 
 const io = socket.io;
 io.on('connection', (socket) => {
@@ -49,12 +50,8 @@ io.on('connection', (socket) => {
 
 })
 
-var mem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var cpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-
-
-
+var mem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var cpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
