@@ -6,13 +6,19 @@ const sysperfmon = require('../../modules/sysperfmon');
 
 
 const index_params = {
-
   title: "Welcom to TV Streamer",
   page: "home",
   config_menu: config.interface.menu
 }
 
+/**
+ * MONITORING DASHBOARD
+ * 
+ */
 var perf_status = {}
+
+var mem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var cpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 /**
  * socket.io
@@ -20,7 +26,7 @@ var perf_status = {}
 
 setInterval(() => {
     sysperfmon((data) => {
-
+      
       mem.push(data.memory);
       mem.shift();
       cpu.push(data.currentload);
@@ -33,27 +39,27 @@ setInterval(() => {
       perf_status.cpunow = data.currentload;
 
       perf_status.cpubrand = data.cpubrand;
-      //console.log(perf_status.cpubrand);
+
   })
 
 }, 1000)
 
-
-
+/**
+ * Socket.IO
+ */
 const io = socket.io;
 io.on('connection', (socket) => {
 
   setInterval(() => {
     io.emit('home', perf_status);
-
   }, 1000)
 
 })
 
-var mem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var cpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-/* GET home page. */
+/** 
+* Home page
+*/
 router.get('/', function(req, res, next) {
   res.render('index', index_params);
 });

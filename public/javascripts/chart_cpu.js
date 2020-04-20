@@ -1,20 +1,40 @@
+/**
+ * @file 
+ * Provides some feature.
+ *
+ * The extra line between the end of the @file docblock
+ * and the file-closure is important.
+ */
+
 window.addEventListener("load", () => {
     const socket = io();
     var context = {};
+
+    function updateConfigByMutating(chart, data, now, label, color, bgcolor, title) {
+        chart.data.datasets = [{
+            label: `${label} ${now}`,
+            data: data,
+            borderColor: color,
+            backgroundColor: bgcolor,
+            lineTension: 0.1,
+            borderWidth: 1
+        }],
+        chart.options.title.text = title,
+        chart.update();
+    }
 
     socket.on('home', (data) => {
         context = data;
     });
        
-        
     setInterval(()=> {
+        updateConfigByMutating(chart2, context.memory, context.memorynow, 
+            'Memory Usage %', 'rgb(22, 200, 22)', 'rgba(22, 200, 22, 0.1)', 'Memory');
 
-        updateConfigByMutating(chart2, context.memory, context.memorynow, 'Memory Usage %', 'rgb(22, 200, 22)', 'rgba(22, 200, 22, 0.1)', 'Memory');
-        updateConfigByMutating(chart, context.cpu, context.cpunow, 'CPU Usage %', 'rgb(75, 192, 192)', 'rgba(75, 192, 192, 0.1)', context.cpubrand);
-        //console.log(context.cpubrand);
-    }, 1000)
+        updateConfigByMutating(chart, context.cpu, context.cpunow, 
+            'CPU Usage %', 'rgb(75, 192, 192)', 'rgba(75, 192, 192, 0.1)', context.cpubrand);
+    }, 1000);
     
-
     var ctx1 = document.getElementById('mychart').getContext('2d');
     var ctx2 = document.getElementById('mychart2').getContext('2d');
     var ctx3 = document.getElementById('mychart3').getContext('2d');
@@ -174,18 +194,4 @@ window.addEventListener("load", () => {
             }
         }
     });
-    function updateConfigByMutating(chart, data, now, label, color, bgcolor, title) {
-
-        chart.data.datasets = [{
-            label: `${label} ${now}`,
-            data: data,
-            borderColor: color,
-            backgroundColor: bgcolor,
-            lineTension: 0.1,
-            borderWidth: 1
-        }],
-        chart.options.title.text = title,
-
-        chart.update();
-    }
 })

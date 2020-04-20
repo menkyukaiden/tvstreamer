@@ -1,3 +1,9 @@
+/**
+ * Function description
+ *
+ * @alias namespace~doStuff
+ */
+
 module.exports = (callback) => {
     const si = require('systeminformation');
     var sysinfo = {};
@@ -20,6 +26,5 @@ module.exports = (callback) => {
             callback(sysinfo);
         })
         .catch(error => console.error(error));
-        
         
     }

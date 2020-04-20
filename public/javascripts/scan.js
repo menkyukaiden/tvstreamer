@@ -1,4 +1,10 @@
 
+/*!
+ * TVStreamer v0.1.0
+ * (c) 2020-2021 F.Fateh
+ * Released under the MIT License.
+ */
+
 const socket = io();
 
 function showAndDismissAlert(type, message) {
@@ -27,15 +33,15 @@ window.addEventListener("load", () => {
     var s = document.querySelector('#SpinnerScaning');
     var $slog = document.querySelector('#scan-log');
 
-
+    /**
+     * Socket.IO
+     */
 
     socket.on('startscan', (data) => {
-        //console.log("received: ", data);
-        //$slog.insertAdjacentHTML('beforeend', `${data}&#13;`);
         addToTextarea($('#scan-log'), data);
-        console.log(data);
+
         if (data == 'stopped') {
-            console.log('xxx');
+    
             tl.removeAttribute('disabled');
             sl.removeAttribute('disabled');
             showAndDismissAlert('danger', 'Error');
@@ -46,17 +52,14 @@ window.addEventListener("load", () => {
             };
         };
         if (data == 'started') {
-            console.log('yyy');
+
             tl.setAttribute('disabled', 'disabled');
             sl.setAttribute('disabled', 'disabled');
             sa.removeAttribute('hidden');
             b.textContent = 'Scanning... ';
             b.innerHTML += '<span role="status" aria-hidden="true" id="SpinnerScaning" class="spinner-border spinner-border-sm scan-spinner"></span>';
             b.setAttribute('disabled', 'disabled');
-        };
-
-
-        
+        };       
     });
 
     socket.on('disconnect', () => {
@@ -75,7 +78,6 @@ window.addEventListener("load", () => {
         var tuner = document.querySelector('#TunnerListSelect').value;
         var sat = document.querySelector('#SatListSelect').value;
         showAndDismissAlert('success', 'Saved Successfully!');
-
         tl.setAttribute('disabled', 'disabled');
         sl.setAttribute('disabled', 'disabled');
         sa.removeAttribute('hidden');
